@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Note } from 'src/app/shared/note.model';
 import { NotesService } from 'src/app/shared/notes.service';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
-import { all } from 'axios';
+
 
 @Component({
   selector: 'app-notes-list',
