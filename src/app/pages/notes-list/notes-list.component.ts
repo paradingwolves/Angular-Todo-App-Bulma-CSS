@@ -116,6 +116,9 @@ export class NotesListComponent implements OnInit {
       // we do not want to show the same note multiple times so we must remove dupes
       let uniqueResults = this.removeDuplicates(allResults);
       this.filteredNotes = uniqueResults;
+
+      // sort by relevancy 
+      this.sortByRelevancy(allResults);
     }
   }
 
