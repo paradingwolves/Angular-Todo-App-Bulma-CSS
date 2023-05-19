@@ -142,4 +142,28 @@ export class NotesListComponent implements OnInit {
 
     return relevantNotes;
   }
+
+  sortByRelevancy(searchResults: Note[]) {
+    let noteCountObj: { [key: string]: number } = {};  // format - key:value => NoteId:number (note object id : count)
+  
+    searchResults.forEach(note => {
+      let noteId = this.notesService.getId(note); // get the note's id
+  
+      if(noteCountObj[noteId]) {
+        noteCountObj[noteId] += 1;
+      } else {
+        noteCountObj[noteId] = 1;
+      }
+    });
+
+    this.filteredNotes = this.filteredNotes.sort((a: Note, b: Note) => {
+      let aId = this.notesService.getId(a);
+      let bId = this.notesService.getId(b);
+
+      let aCount = noteCountObj[aId];
+      let bCount = noteCountObj[bId];
+
+      return bCount - aCount;
+    })
+  } 
 }
